@@ -1,0 +1,715 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:charset => "utf-8"}/
+    / Title and other stuffs
+    %title Social Company
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "keywords"}
+    %meta{:content => "", :name => "author"}
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
+    = javascript_include_tag 'application', 'data-turbolinks-track' => false
+    = csrf_meta_tags
+
+    / Favicon
+    %link{:href => "img/favicon/favicon.png", :rel => "shortcut icon"}/
+  %body
+    .navbar.navbar-fixed-top.bs-docs-nav{:role => "banner"}
+      .conjtainer
+        / Menu button for smallar screens
+        .navbar-header
+          %button.navbar-toggle.btn-navbar{"data-target" => ".bs-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span Menu
+          / Site name for smallar screens
+          %a.navbar-brand.hidden-lg{:href => "index.html"} MacBeth
+        / Navigation starts
+        %nav.collapse.navbar-collapse.bs-navbar-collapse{:role => "navigation"}
+          %ul.nav.navbar-nav
+            / Upload to server link. Class "dropdown-big" creates big dropdown
+            %li.dropdown.dropdown-big
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %span.label.label-success
+                  %i.fa.fa-cloud-upload
+                Upload to Cloud
+              / Dropdown
+              %ul.dropdown-menu
+                %li
+                  / Progress bar
+                  %p Photo Upload in Progress
+                  / Bootstrap progress bar
+                  .progress.progress-striped.active
+                    .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
+                      %span.sr-only 40% Complete
+                  %hr/
+                  / Progress bar
+                  %p Video Upload in Progress
+                  / Bootstrap progress bar
+                  .progress.progress-striped.active
+                    .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "80", :role => "progressbar", :style => "width: 80%"}
+                      %span.sr-only 80% Complete
+                  %hr/
+                  / Dropdown menu footer
+                  .drop-foot
+                    %a{:href => "#"} View All
+            / Sync to server link
+            %li.dropdown.dropdown-big
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %span.label.label-danger
+                  %i.fa.fa-refresh
+                Sync with Server
+              / Dropdown
+              %ul.dropdown-menu
+                %li
+                  / Using "icon-spin" class to rotate icon.
+                  %p
+                    %span.label.label-info
+                      %i.fa.fa-cloud
+                    Syncing Members Lists to Server
+                  %hr/
+                  %p
+                    %span.label.label-warning
+                      %i.fa.fa-cloud
+                    Syncing Bookmarks Lists to Cloud
+                  %hr/
+                  / Dropdown menu footer
+                  .drop-foot
+                    %a{:href => "#"} View All
+          / Search form
+          %form.navbar-form.navbar-left{:role => "search"}
+            .form-group
+              %input.form-control{:placeholder => "Search", :type => "text"}/
+          / Links
+          %ul.nav.navbar-nav.pull-right
+            %li.dropdown.pull-right
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                %i.fa.fa-user
+                Admin
+                %b.caret
+              / Dropdown menu
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "#"}
+                    %i.fa.fa-user
+                    Profile
+                %li
+                  %a{:href => "#"}
+                    %i.fa.fa-cogs
+                    Settings
+                %li
+                  %a{:href => "login.html"}
+                    %i.fa.fa-sign-out
+                    Logout
+    / Header starts
+    %header
+      .container
+        .row
+          / Logo section
+          .col-md-4
+            / Logo.
+            .logo
+              %h1
+                %a{:href => "#"}
+                  Mac
+                  %span.bold Admin
+              %p.meta something goes in meta area
+            / Logo ends
+          / Button section
+          .col-md-4
+            / Buttons
+            %ul.nav.nav-pills
+              / Comment button with number of latest comments count
+              %li.dropdown.dropdown-big
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  %i.fa.fa-comments
+                  Chats
+                  %span.label.label-info 6
+                %ul.dropdown-menu
+                  %li
+                    / Heading - h5
+                    %h5
+                      %i.fa.fa-comments
+                      Chats
+                    / Use hr tag to add border
+                    %hr/
+                  %li
+                    / List item heading h6
+                    %h6
+                      %a{:href => "#"} Hi :)
+                      %span.label.label-warning.pull-right 10:42
+                    .clearfix
+                    %hr/
+                  %li
+                    %h6
+                      %a{:href => "#"} How are you?
+                      %span.label.label-warning.pull-right 20:42
+                    .clearfix
+                    %hr/
+                  %li
+                    %h6
+                      %a{:href => "#"} What are you doing?
+                      %span.label.label-warning.pull-right 14:42
+                    .clearfix
+                    %hr/
+                  %li
+                    .drop-foot
+                      %a{:href => "#"} View All
+              / Message button with number of latest messages count
+              %li.dropdown.dropdown-big
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  %i.fa.fa-envelope
+                  Inbox
+                  %span.label.label-primary 6
+                %ul.dropdown-menu
+                  %li
+                    / Heading - h5
+                    %h5
+                      %i.fa.fa-envelope
+                      Messages
+                    / Use hr tag to add border
+                    %hr/
+                  %li
+                    / List item heading h6
+                    %h6
+                      %a{:href => "#"} Hello how are you?
+                    / List item para
+                    %p Quisque eu consectetur erat eget  semper...
+                    %hr/
+                  %li
+                    %h6
+                      %a{:href => "#"} Today is wonderful?
+                    %p Quisque eu consectetur erat eget  semper...
+                    %hr/
+                  %li
+                    .drop-foot
+                      %a{:href => "#"} View All
+              / Members button with number of latest members count
+              %li.dropdown.dropdown-big
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  %i.fa.fa-user
+                  Users
+                  %span.label.label-success 6
+                %ul.dropdown-menu
+                  %li
+                    / Heading - h5
+                    %h5
+                      %i.fa.fa-user
+                      Users
+                    / Use hr tag to add border
+                    %hr/
+                  %li
+                    / List item heading h6
+                    %h6
+                      %a{:href => "#"} Ravi Kumar
+                      %span.label.label-warning.pull-right Free
+                    .clearfix
+                    %hr/
+                  %li
+                    %h6
+                      %a{:href => "#"} Balaji
+                      %span.label.label-important.pull-right Premium
+                    .clearfix
+                    %hr/
+                  %li
+                    %h6
+                      %a{:href => "#"} Kumarasamy
+                      %span.label.label-warning.pull-right Free
+                    .clearfix
+                    %hr/
+                  %li
+                    .drop-foot
+                      %a{:href => "#"} View All
+          / Data section
+          .col-md-4
+            .header-data
+              / Traffic data
+              .hdata
+                .mcol-left
+                  / Icon with red background
+                  %i.fa.fa-signal.bred
+                .mcol-right
+                  / Number of visitors
+                  %p
+                    %a{:href => "#"} 7000
+                    %em visits
+                .clearfix
+              / Members data
+              .hdata
+                .mcol-left
+                  / Icon with blue background
+                  %i.fa.fa-user.bblue
+                .mcol-right
+                  / Number of visitors
+                  %p
+                    %a{:href => "#"} 3000
+                    %em users
+                .clearfix
+              / revenue data
+              .hdata
+                .mcol-left
+                  / Icon with green background
+                  %i.fa.fa-money.bgreen
+                .mcol-right
+                  / Number of visitors
+                  %p
+                    %a{:href => "#"} 5000
+                    %em orders
+                .clearfix
+    / Header ends
+    / Main content starts
+    .content
+      / Sidebar
+      .sidebar
+        .sidebar-dropdown
+          %a{:href => "#"} Navigation
+        / - Sidebar navigation
+        / If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation.
+        %ul#nav
+          / Main menu with font awesome icon
+          %li
+            %a{:href => "index.html"}
+              %i.fa.fa-home
+              Dashboard
+            /
+              Sub menu markup
+              <ul>
+              <li><a href="#">Submenu #1</a></li>
+              <li><a href="#">Submenu #2</a></li>
+              <li><a href="#">Submenu #3</a></li>
+              </ul>
+          %li.has_sub
+            %a{:href => "#"}
+              %i.fa.fa-list-alt
+              Widgets
+              %span.pull-right
+                %i.fa.fa-chevron-right
+            %ul
+              %li
+                %a{:href => "widgets1.html"} Widgets #1
+              %li
+                %a{:href => "widgets2.html"} Widgets #2
+              %li
+                %a{:href => "widgets3.html"} Widgets #3
+          %li.has_sub
+            %a{:href => "#"}
+              %i.fa.fa-file-o
+              Pages #1
+              %span.pull-right
+                %i.fa.fa-chevron-right
+            %ul
+              %li
+                %a{:href => "post.html"} Post
+              %li
+                %a{:href => "login.html"} Login
+              %li
+                %a{:href => "register.html"} Register
+              %li
+                %a{:href => "support.html"} Support
+              %li
+                %a{:href => "invoice.html"} Invoice
+              %li
+                %a{:href => "gallery.html"} Gallery
+          %li.has_sub
+            %a{:href => "#"}
+              %i.fa.fa-file-o
+              Pages #2
+              %span.pull-right
+                %i.fa.fa-chevron-right
+            %ul
+              %li
+                %a{:href => "media.html"} Media
+              %li
+                %a{:href => "statement.html"} Statement
+              %li
+                %a{:href => "error.html"} Error
+              %li
+                %a{:href => "error-log.html"} Error Log
+              %li
+                %a{:href => "calendar.html"} Calendar
+              %li
+                %a{:href => "grid.html"} Grid
+          %li.has_sub.open
+            %a{:href => "#"}
+              %i.fa.fa-table
+              Tables
+              %span.pull-right
+                %i.fa.fa-chevron-right
+            %ul
+              %li.current
+                %a{:href => "tables.html"} Tables
+              %li
+                %a{:href => "dynamic-tables.html"} Dynamic Tables
+          %li
+            %a{:href => "charts.html"}
+              %i.fa.fa-bar-chart-o
+              Charts
+          %li
+            %a{:href => "forms.html"}
+              %i.fa.fa-tasks
+              Forms
+          %li
+            %a{:href => "ui.html"}
+              %i.fa.fa-magic
+              User Interface
+      / Sidebar ends
+      / Main bar
+      .mainbar
+        / Page heading
+        .page-head
+          %h2.pull-left
+            %i.fa.fa-table
+            Tables
+          / Breadcrumb
+          .bread-crumb.pull-right
+            %a{:href => "index.html"}
+              %i.fa.fa-home
+              Home
+            / Divider
+            %span.divider /
+            %a.bread-current{:href => "#"} Dashboard
+          .clearfix
+        / Page heading ends
+        / Matter
+        .matter
+          .container
+            / Table
+            .row
+              .col-md-12
+                .widget
+                  .widget-head
+                    .pull-left Tables
+                    .widget-icons.pull-right
+                      %a.wminimize{:href => "#"}
+                        %i.fa.fa-chevron-up
+                      %a.wclose{:href => "#"}
+                        %i.fa.fa-times
+                    .clearfix
+                  .widget-content
+                    .table-responsive
+                      %table.table.table-striped.table-bordered.table-hover
+                        %thead
+                          %tr
+                            %th #
+                            %th Name
+                            %th Location
+                            %th Age
+                            %th Education
+                        %tbody
+                          %tr
+                            %td 1
+                            %td Ashok
+                            %td India
+                            %td 23
+                            %td B.Tech
+                          %tr
+                            %td 2
+                            %td Kumarasamy
+                            %td USA
+                            %td 22
+                            %td BE
+                          %tr
+                            %td 3
+                            %td Babura
+                            %td UK
+                            %td 43
+                            %td PhD
+                          %tr
+                            %td 4
+                            %td Ravi Kumar
+                            %td China
+                            %td 73
+                            %td PUC
+                          %tr
+                            %td 5
+                            %td Santhosh
+                            %td Japan
+                            %td 43
+                            %td M.Tech
+                    .widget-foot
+                      %ul.pagination.pagination-sm.pull-right
+                        %li
+                          %a{:href => "#"} Prev
+                        %li
+                          %a{:href => "#"} 1
+                        %li
+                          %a{:href => "#"} 2
+                        %li
+                          %a{:href => "#"} 3
+                        %li
+                          %a{:href => "#"} 4
+                        %li
+                          %a{:href => "#"} Next
+                      .clearfix
+                .widget
+                  .widget-head
+                    .pull-left Tables
+                    .widget-icons.pull-right
+                      %a.wminimize{:href => "#"}
+                        %i.fa.fa-chevron-up
+                      %a.wclose{:href => "#"}
+                        %i.fa.fa-times
+                    .clearfix
+                  .widget-content
+                    .table-responsive
+                      %table.table.table-striped.table-bordered.table-hover
+                        %thead
+                          %tr
+                            %th #
+                            %th Name
+                            %th Location
+                            %th Date
+                            %th Type
+                            %th Status
+                            %th Control
+                        %tbody
+                          %tr
+                            %td 1
+                            %td Ravi Kumar
+                            %td India
+                            %td 23/12/2012
+                            %td Paid
+                            %td
+                              %span.label.label-success Active
+                            %td
+                              %button.btn.btn-xs.btn-success
+                                %i.fa.fa-check
+                              %button.btn.btn-xs.btn-warning
+                                %i.fa.fa-pencil
+                              %button.btn.btn-xs.btn-danger
+                                %i.fa.fa-times
+                          %tr
+                            %td 2
+                            %td Parneethi Chopra
+                            %td USA
+                            %td 13/02/2012
+                            %td Free
+                            %td
+                              %span.label.label-danger Banned
+                            %td
+                              %button.btn.btn-xs.btn-default
+                                %i.fa.fa-check
+                              %button.btn.btn-xs.btn-default
+                                %i.fa.fa-pencil
+                              %button.btn.btn-xs.btn-default
+                                %i.fa.fa-times
+                          %tr
+                            %td 3
+                            %td Kumar Ragu
+                            %td Japan
+                            %td 12/03/2012
+                            %td Paid
+                            %td
+                              %span.label.label-success Active
+                            %td
+                              .btn-group
+                                %button.btn.btn-xs.btn-default
+                                  %i.fa.fa-check
+                                %button.btn.btn-xs.btn-default
+                                  %i.fa.fa-pencil
+                                %button.btn.btn-xs.btn-default
+                                  %i.fa.fa-times
+                          %tr
+                            %td 4
+                            %td Vishnu Vardan
+                            %td Bangkok
+                            %td 03/11/2012
+                            %td Paid
+                            %td
+                              %span.label.label-success Active
+                            %td
+                              .btn-group
+                                %button.btn.btn-xs.btn-success
+                                  %i.fa.fa-check
+                                %button.btn.btn-xs.btn-warning
+                                  %i.fa.fa-pencil
+                                %button.btn.btn-xs.btn-danger
+                                  %i.fa.fa-times
+                          %tr
+                            %td 5
+                            %td Anuksha Sharma
+                            %td Singapore
+                            %td 13/32/2012
+                            %td Free
+                            %td
+                              %span.label.label-danger Banned
+                            %td
+                              .btn-group1
+                                %button.btn.btn-xs.btn-success
+                                  %i.fa.fa-check
+                                %button.btn.btn-xs.btn-warning
+                                  %i.fa.fa-pencil
+                                %button.btn.btn-xs.btn-danger
+                                  %i.fa.fa-times
+                    .widget-foot
+                      %ul.pagination.pagination-sm.pull-right
+                        %li
+                          %a{:href => "#"} Prev
+                        %li
+                          %a{:href => "#"} 1
+                        %li
+                          %a{:href => "#"} 2
+                        %li
+                          %a{:href => "#"} 3
+                        %li
+                          %a{:href => "#"} 4
+                        %li
+                          %a{:href => "#"} Next
+                      .clearfix
+            .row
+              .col-md-6
+                .widget
+                  .widget-head
+                    .pull-left Tables
+                    .widget-icons.pull-right
+                      %a.wminimize{:href => "#"}
+                        %i.fa.fa-chevron-up
+                      %a.wclose{:href => "#"}
+                        %i.fa.fa-times
+                    .clearfix
+                  .widget-content
+                    .table-responsive
+                      %table.table.table-striped.table-bordered.table-hover
+                        %thead
+                          %tr
+                            %th #
+                            %th Name
+                            %th Location
+                            %th Type
+                            %th Status
+                        %tbody
+                          %tr
+                            %td 1
+                            %td Ravi Kumar
+                            %td India
+                            %td Paid
+                            %td
+                              %span.label.label-success Active
+                          %tr
+                            %td 2
+                            %td Parneethi Chopra
+                            %td USA
+                            %td Free
+                            %td
+                              %span.label.label-danger Banned
+                          %tr
+                            %td 3
+                            %td Kumar Ragu
+                            %td Japan
+                            %td Paid
+                            %td
+                              %span.label.label-success Active
+                          %tr
+                            %td 4
+                            %td Vishnu Vardan
+                            %td Bangkok
+                            %td Paid
+                            %td
+                              %span.label.label-success Active
+                          %tr
+                            %td 5
+                            %td Anuksha Sharma
+                            %td Singapore
+                            %td Free
+                            %td
+                              %span.label.label-danger Banned
+                    .widget-foot
+                      %ul.pagination.pagination-sm.pull-right
+                        %li
+                          %a{:href => "#"} Prev
+                        %li
+                          %a{:href => "#"} 1
+                        %li
+                          %a{:href => "#"} 2
+                        %li
+                          %a{:href => "#"} 3
+                        %li
+                          %a{:href => "#"} 4
+                        %li
+                          %a{:href => "#"} Next
+                      .clearfix
+              .col-md-6
+                .widget
+                  .widget-head
+                    .pull-left Tables
+                    .widget-icons.pull-right
+                      %a.wminimize{:href => "#"}
+                        %i.fa.fa-chevron-up
+                      %a.wclose{:href => "#"}
+                        %i.fa.fa-times
+                    .clearfix
+                  .widget-content
+                    .table-responsive
+                      %table.table.table-striped.table-bordered.table-hover
+                        %thead
+                          %tr
+                            %th #
+                            %th Name
+                            %th Location
+                            %th Date
+                            %th Type
+                        %tbody
+                          %tr
+                            %td 1
+                            %td Ravi Kumar
+                            %td India
+                            %td 23/12/2012
+                            %td Paid
+                          %tr
+                            %td 2
+                            %td Parneethi Chopra
+                            %td USA
+                            %td 13/02/2012
+                            %td Free
+                          %tr
+                            %td 3
+                            %td Kumar Ragu
+                            %td Japan
+                            %td 12/03/2012
+                            %td Paid
+                          %tr
+                            %td 4
+                            %td Vishnu Vardan
+                            %td Bangkok
+                            %td 03/11/2012
+                            %td Paid
+                          %tr
+                            %td 5
+                            %td Anuksha Sharma
+                            %td Singapore
+                            %td 13/32/2012
+                            %td Free
+                    .widget-foot
+                      %ul.pagination.pagination-sm.pull-right
+                        %li
+                          %a{:href => "#"} Prev
+                        %li
+                          %a{:href => "#"} 1
+                        %li
+                          %a{:href => "#"} 2
+                        %li
+                          %a{:href => "#"} 3
+                        %li
+                          %a{:href => "#"} 4
+                        %li
+                          %a{:href => "#"} Next
+                      .clearfix
+        / Matter ends
+      / Mainbar ends
+      .clearfix
+    / Content ends
+    / Footer starts
+    %footer
+      .container
+        .row
+          .col-md-12
+            / Copyright info
+            %p.copy
+              Copyright © 2016 |
+              %a{:href => "#"} Marco Montes
+    / Footer ends
+    / Scroll to top
+    %span.totop
+      %a{:href => "#"}
+        %i.fa.fa-chevron-up
