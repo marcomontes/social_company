@@ -1,0 +1,19 @@
+.widget
+  .widget-head
+    .pull-left USUARIOS
+    .widget-icons.pull-right
+    .clearfix
+  .widget-content
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th NOMBRE
+            %th E-MAIL
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.name
+              %td= user.email
+          
+    .widget-foot

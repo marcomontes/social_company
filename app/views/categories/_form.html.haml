@@ -1,13 +1,30 @@
-= form_for @category do |f|
-  - if @category.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
-      %ul
-        - @category.errors.full_messages.each do |msg|
-          %li= msg
+.widget.wgreen
+  .widget-head
+    .pull-left= title
+    .widget-icons.pull-right
+      %a.wminimize{:href => "#"}
+        %i.fa.fa-chevron-up
+      %a.wclose{:href => "#"}
+        %i.fa.fa-times
+    .clearfix
+  .widget-content
+    - if @category.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@group.errors.count, "error")}:"
+        %ul
+          - @category.errors.full_messages.each do |msg|
+            %li= msg
+    .padd
+      %br/
+      / Form starts.
+      = form_for @category, html: { class: "form-horizontal", :role => "form" } do |f|
+        .form-group
+          %label.col-lg-2.control-label Nombre
+          .col-lg-5
+            = f.text_field :name, class: "form-control", placeholder: "Nombre"
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save'
+        .form-group
+          .col-lg-offset-2.col-lg-6
+            %button.btn.btn-sm.btn-primary{type: "submit"} GUARDAR
+
+  .widget-foot

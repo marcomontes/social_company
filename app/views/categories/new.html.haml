@@ -1,5 +1,3 @@
-%h1 New category
+= render partial: 'form', locals: { title: "NUEVA CATEGORIA" }
+= link_to 'REGRESAR', categories_path, class: "btn btn-sm btn-success"
 
-= render 'form'
-
-= link_to 'Back', categories_path

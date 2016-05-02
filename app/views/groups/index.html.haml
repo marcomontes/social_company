@@ -1,21 +1,25 @@
-%h1 Listing groups
+= link_to "NUEVO GRUPO", new_group_path, class: "btn btn-sm btn-success"
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
-
-  %tbody
-    - @groups.each do |group|
-      %tr
-        %td= group.name
-        %td= link_to 'Show', group
-        %td= link_to 'Edit', edit_group_path(group)
-        %td= link_to 'Destroy', group, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Group', new_group_path
+.widget
+  .widget-head
+    .pull-left GRUPOS
+    .widget-icons.pull-right
+    .clearfix
+  .widget-content
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th NOMBRE
+            %th OPCIONES
+        %tbody
+          - @groups.each do |group|
+            %tr
+              %td= group.name
+              %td
+                = link_to edit_group_path(group), class: "button btn btn-xs btn-warning" do
+                  %i.fa.fa-pencil
+                = link_to group_path(group), method: :delete, :data => { :confirm => 'Está seguro?' }, class: "button btn btn-xs btn-danger" do
+                  %i.fa.fa-times
+          
+    .widget-foot

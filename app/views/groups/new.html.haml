@@ -1,5 +1,2 @@
-%h1 New group
-
-= render 'form'
-
-= link_to 'Back', groups_path
+= render partial: 'form', locals: { title: "NUEVO GRUPO" }
+= link_to 'REGRESAR', groups_path, class: "btn btn-sm btn-success"

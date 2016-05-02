@@ -1,21 +1,25 @@
-%h1 Listing categories
+= link_to "NUEVA CATEGORIA", new_category_path, class: "btn btn-sm btn-success"
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
-
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td= category.name
-        %td= link_to 'Show', category
-        %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', category, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Category', new_category_path
+.widget
+  .widget-head
+    .pull-left CATEGORIAS
+    .widget-icons.pull-right
+    .clearfix
+  .widget-content
+    .table-responsive
+      %table.table.table-striped.table-bordered.table-hover
+        %thead
+          %tr
+            %th NOMBRE
+            %th OPCIONES
+        %tbody
+          - @categories.each do |category|
+            %tr
+              %td= category.name
+              %td
+                = link_to edit_category_path(category), class: "button btn btn-xs btn-warning" do
+                  %i.fa.fa-pencil
+                = link_to category_path(category), method: :delete, :data => { :confirm => 'Está seguro?' }, class: "button btn btn-xs btn-danger" do
+                  %i.fa.fa-times
+          
+    .widget-foot
