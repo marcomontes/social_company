@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @message.user_id
+%p
+  %b Category id integer:
+  = @message.category_id_integer
+%p
+  %b Visibility:
+  = @message.visibility
+%p
+  %b Group ids:
+  = @message.group_ids
+%p
+  %b Body:
+  = @message.body
+
+= link_to 'Edit', edit_message_path(@message)
+\|
+= link_to 'Back', messages_path
