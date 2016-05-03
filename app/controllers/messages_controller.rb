@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:user_id, :category_id_integer, :visibility, :body, group_ids: [])
+      params.require(:message).permit(:user_id, :category_id, :visibility, :body, group_ids: [])
     end
 
     def menu_data

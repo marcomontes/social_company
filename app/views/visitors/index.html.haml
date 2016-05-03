@@ -1,3 +1,7 @@
-- unless current_user
+- if current_user
+  - @public_messages.each do |msg|
+    = render partial: "shared/messages", locals: { msg: msg }
+- else
   = link_to "Iniciar Sesión", new_user_session_path, class: "btn btn-sm btn-primary"
   = link_to "Registrarse", new_user_registration_path, class: "btn btn-sm btn-primary"
+

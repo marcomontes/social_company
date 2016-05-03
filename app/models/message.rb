@@ -8,6 +8,10 @@ class Message < ActiveRecord::Base
   validates :body, presence: true
 
   before_create :clean_groups
+
+  scope :publics,  -> { where(visibility: 1) }
+  scope :privates, -> { where(visibility: 2) }
+  scope :groups,   -> { where(visibility: 3) }
   
   def self.visibility_options
     { "Público" => 1, "Privado" => 2, "Grupo" => 3 }

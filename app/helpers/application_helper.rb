@@ -29,4 +29,8 @@ module ApplicationHelper
       options << [k, v]
     end
   end
+
+  def message_groups(msg)
+    Group.where(id: msg.group_ids)
+  end
 end

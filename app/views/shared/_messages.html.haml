@@ -1,0 +1,28 @@
+.widget
+  / Widget title
+  .widget-head
+    .pull-left
+      = msg.user.name
+    .clearfix
+  .widget-content
+    / Widget content
+    .padd
+      = msg.body
+
+      %hr
+      .row
+        .col-md-2
+          Categoría:
+          %span.label.label-success
+            = msg.category.name
+        .col-md-2
+          Grupos:
+          - message_groups(msg).each do |group|
+            %span.label.label-info
+              = group.name
+        .col-md-8
+    / Widget footer
+    .widget-foot
+      .pull-right
+        %small= msg.created_at.localtime
+      .clearfix

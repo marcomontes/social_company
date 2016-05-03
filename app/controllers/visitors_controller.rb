@@ -1,8 +1,7 @@
 class VisitorsController < ApplicationController
 
   def index
-    @groups = Group.all
-    @categories = Category.all
+    @public_messages = Message.publics
   end
 
 end
