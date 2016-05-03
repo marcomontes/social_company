@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+  
+  root to: 'visitors#index'
+
+  devise_for :users
+
   resources :messages
   resources :categories
   resources :groups
-  root to: 'visitors#index'
-  devise_for :users
-  resources :users
+  resources :users do
+    collection do
+      post 'set_group'
+      post 'remove_group'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
