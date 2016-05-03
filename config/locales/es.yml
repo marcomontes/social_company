@@ -1,1 +1,7 @@
 es:
+  devise/sessions: Iniciar Sesión
+  groups: Grupos
+  categories: Categorias
+  users: Usuarios
+  visitors: Bienvenidos
+  devise/registrations: Registro de Usuario
