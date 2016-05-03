@@ -35,7 +35,7 @@
         %ul#nav
           - if is_admin?
             = render "shared/admin_menu"
-          - else
+          - elsif current_user
             = render "shared/user_menu"
       / Sidebar ends
       / Main bar
