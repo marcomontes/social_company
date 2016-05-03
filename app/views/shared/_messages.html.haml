@@ -2,7 +2,7 @@
   / Widget title
   .widget-head
     .pull-left
-      = msg.user.name
+      = msg.user_name
     .clearfix
   .widget-content
     / Widget content
@@ -14,12 +14,13 @@
         .col-md-2
           Categoría:
           %span.label.label-success
-            = msg.category.name
+            = msg.category_name
         .col-md-2
           Grupos:
           - message_groups(msg).each do |group|
             %span.label.label-info
               = group.name
+            &nbsp;
         .col-md-8
     / Widget footer
     .widget-foot

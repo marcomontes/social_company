@@ -12,6 +12,9 @@ class Message < ActiveRecord::Base
   scope :publics,  -> { where(visibility: 1) }
   scope :privates, -> { where(visibility: 2) }
   scope :groups,   -> { where(visibility: 3) }
+
+  delegate :name, to: :user, prefix: true
+  delegate :name, to: :category, prefix: true
   
   def self.visibility_options
     { "Público" => 1, "Privado" => 2, "Grupo" => 3 }
