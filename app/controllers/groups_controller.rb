@@ -1,6 +1,8 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update, :destroy]
 
+  before_action :authenticate_user!
+
   def index
     @groups = Group.all
   end
@@ -43,6 +45,7 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, { user_ids: [] })
     end
+
 end

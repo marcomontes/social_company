@@ -2,20 +2,21 @@
 
 .widget
   .widget-head
-    .pull-left GRUPOS
-    .widget-icons.pull-right
-    .clearfix
   .widget-content
     .table-responsive
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
-            %th NOMBRE
+            %th GRUPO
+            %th USUARIOS
             %th OPCIONES
         %tbody
           - @groups.each do |group|
             %tr
               %td= group.name
+              %td
+                - if group.users.any?
+                  = users_sentence(group)
               %td
                 = link_to edit_group_path(group), class: "button btn btn-xs btn-warning" do
                   %i.fa.fa-pencil

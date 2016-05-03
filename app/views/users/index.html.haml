@@ -1,19 +1,30 @@
 .widget
   .widget-head
-    .pull-left USUARIOS
-    .widget-icons.pull-right
-    .clearfix
   .widget-content
     .table-responsive
       %table.table.table-striped.table-bordered.table-hover
         %thead
           %tr
             %th NOMBRE
+            %th GRUPOS
             %th E-MAIL
+            %th ASIGNAR A UN GRUPO
         %tbody
           - @users.each do |user|
             %tr
               %td= user.name
+              %td
+                - user.groups.each do |group|
+                  = group.name
+                  = link_to remove_group_users_path(user_id: user.id, group_id: group.id), method: :post do
+                    %i.fa.fa-times
+                    /%span.label.label-danger
+                    /  X
+                  %br
               %td= user.email
-          
+              %td
+                = form_tag set_group_users_path, method: :post do
+                  = hidden_field_tag :user_id, user.id
+                  = select_tag :group_id, options_for_select(groups_select), onchange: "this.form.submit();", include_blank: true
+
     .widget-foot

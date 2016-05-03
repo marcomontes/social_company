@@ -1,0 +1,12 @@
+%li
+  %a{:href => groups_path}
+    %i.fa.fa-home
+    Grupos
+%li
+  %a{:href => categories_path}
+    %i.fa.fa-home
+    Categorias
+%li
+  = link_to destroy_user_session_path, method: :delete do
+    %i.fa.fa-home
+    Cerrar Sesión

@@ -20,7 +20,7 @@
     .navbar.navbar-fixed-top.bs-docs-nav{:role => "banner"}
       .container
         %h1.text-center
-          %span.bold Administración
+          %span.bold Social Company
     / Header starts
     %header
 
@@ -33,20 +33,10 @@
         / - Sidebar navigation
         / If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation.
         %ul#nav
-          / Main menu with font awesome icon
-          %li
-            %a{:href => users_path}
-              %i.fa.fa-home
-              Usuarios
-          %li
-            %a{:href => groups_path}
-              %i.fa.fa-home
-              Grupos
-          %li
-            %a{:href => categories_path}
-              %i.fa.fa-home
-              Categorias
-
+          - if is_admin?
+            = render "shared/admin_menu"
+          - else
+            = render "shared/user_menu"
       / Sidebar ends
       / Main bar
       .mainbar
@@ -54,7 +44,7 @@
         .page-head
           %h2.pull-left
             %i.fa.fa-table
-            = params[:controller].upcase
+            = I18n.t(params[:controller])
           / Breadcrumb
           .bread-crumb.pull-right
             %a{:href => root_path}
@@ -72,7 +62,7 @@
             .row
               .col-md-12
                 - flash.each do |key, value|
-                  %div{:class => flash_class(key)}
+                  %div.alert.alert-success
                     = value
                 = yield
             
