@@ -6,5 +6,16 @@ class Message < ActiveRecord::Base
   validates :visibility, presence: true
   validates :group_ids, presence: true
   validates :body, presence: true
+
+  before_create :clean_groups
   
+  def self.visibility_options
+    { "Público" => 1, "Privado" => 2, "Grupo" => 3 }
+  end
+
+  private
+
+    def clean_groups
+      self.group_ids = self.group_ids.reject(&:empty?)
+    end
 end

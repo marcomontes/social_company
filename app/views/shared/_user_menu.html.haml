@@ -1,12 +1,32 @@
 %li
-  %a{:href => groups_path}
-    %i.fa.fa-home
+  = link_to new_message_path do
+    %i.fa.fa-file-text-o
+    Publicar Mensaje
+
+%li.has_sub.open
+  %a{:href => "#"}
+    %i.fa.fa-list-alt
     Grupos
-%li
-  %a{:href => categories_path}
-    %i.fa.fa-home
+    %span.pull-right
+      %i.fa.fa-users
+  %ul{:style => "display: block;"}
+    - @groups.all.each do |group|
+      %li
+        = link_to group.name, messages_path(group: group)
+
+%li.has_sub.open
+  %a{:href => "#"}
+    %i.fa.fa-list-alt
     Categorias
-%li
-  = link_to destroy_user_session_path, method: :delete do
-    %i.fa.fa-home
-    Cerrar Sesión
+    %span.pull-right
+      %i.fa.fa-bars
+  %ul{:style => "display: block;"}
+    - @categories.all.each do |category|
+      %li
+        = link_to category.name, messages_path(category: category)
+
+- if current_user
+  %li
+    = link_to destroy_user_session_path, method: :delete do
+      %i.fa.fa-home
+      Cerrar Sesión

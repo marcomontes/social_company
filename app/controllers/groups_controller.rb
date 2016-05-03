@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update, :destroy]
-
   before_action :authenticate_user!
+  before_action :check_admin
 
   def index
     @groups = Group.all

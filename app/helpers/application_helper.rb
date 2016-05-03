@@ -18,4 +18,15 @@ module ApplicationHelper
     Group.all.collect{ |g| [g.name, g.id] }
   end
 
+  def categories_select
+    Category.all.collect{ |c| [c.name, c.id] }
+  end
+
+  def visibility_select
+    options = []
+    
+    Message.visibility_options.each do |k,v|
+      options << [k, v]
+    end
+  end
 end

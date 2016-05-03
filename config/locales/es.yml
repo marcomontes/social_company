@@ -5,3 +5,4 @@ es:
   users: Usuarios
   visitors: Bienvenidos
   devise/registrations: Registro de Usuario
+  messages: Mensajes

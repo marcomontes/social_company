@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :messages
+  resources :messages, only: [:new, :create]
   resources :categories
   resources :groups
   resources :users do

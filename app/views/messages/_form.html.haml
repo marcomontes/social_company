@@ -1,25 +1,42 @@
-= form_for @message do |f|
-  - if @message.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
-      %ul
-        - @message.errors.full_messages.each do |msg|
-          %li= msg
+.widget.wgreen
+  .widget-head
+    .pull-left PUBLICAR MENSAJE
+    .clearfix
+  .widget-content
+    - if @message.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
+        %ul
+          - @message.errors.full_messages.each do |msg|
+            %li= msg
+    .padd
+      %br/
+      / Form starts.
+      = form_for @message, html: { class: "form-horizontal", :role => "form" } do |f|
+        .form-group
+          %label.col-lg-2.control-label Mensaje
+          .col-lg-5
+            = f.text_field :body, class: "form-control", required: "required"
 
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :category_id_integer
-    = f.text_field :category_id_integer
-  .field
-    = f.label :visibility
-    = f.number_field :visibility
-  .field
-    = f.label :group_ids
-    = f.text_area :group_ids
-  .field
-    = f.label :body
-    = f.text_area :body
-  .actions
-    = f.submit 'Save'
+        .form-group
+          %label.col-lg-2.control-label Categoría
+          .col-lg-5
+            = f.select :category_id, options_for_select(categories_select), { include_blank: "- Seleccione una categoría -" }, { required: "required", class: "form-control" }
+
+        .form-group
+          %label.col-lg-2.control-label Visibilidad
+          .col-lg-5
+            = f.select :visibility, options_for_select(visibility_select), { include_blank: "- Seleccione la visibilidad -" }, { required: "required", class: "form-control" }
+
+        .form-group
+          %label.col-lg-2.control-label Grupos
+          .col-lg-5
+            = f.collection_check_boxes(:group_ids, current_user.groups, :id, :name, {}, { class: "form-control" }) do |g|
+              = g.label class: "label-checkbox" do
+                = g.check_box + g.text
+
+        .form-group
+          .col-lg-offset-2.col-lg-6
+            %button.btn.btn-sm.btn-primary{type: "submit"} GUARDAR
+
+  .widget-foot
