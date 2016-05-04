@@ -1,4 +1,4 @@
-class VisitorsController < ApplicationController
+class DashboardController < ApplicationController
 
   def index
     @public_messages = Message.publics
