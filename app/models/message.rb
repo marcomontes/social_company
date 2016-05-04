@@ -20,6 +20,27 @@ class Message < ActiveRecord::Base
     { "Público" => 1, "Privado" => 2, "Grupo" => 3 }
   end
 
+  def self.for_user_dashboard(user)
+    public_messages = self.publics
+    private_messages = user.messages.privates
+    group_messages = self.user_groups_messages(user)
+
+    (public_messages + private_messages + group_messages).uniq
+  end
+
+  def self.user_groups_messages(user)
+    user_groups = user.group_ids
+    group_messages = []
+
+    self.groups.each do |msg|
+      msg.group_ids.each do |group_id|
+        group_messages << msg if user_groups.include?(group_id.to_i)
+      end
+    end
+
+    group_messages
+  end
+
   private
 
     def clean_groups

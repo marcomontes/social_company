@@ -1,7 +1,8 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @public_messages = Message.publics
+    @messages = Message.for_user_dashboard(current_user)
   end
 
 end
